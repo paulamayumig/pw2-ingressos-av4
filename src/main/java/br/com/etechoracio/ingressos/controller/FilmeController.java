@@ -26,8 +26,9 @@ public class FilmeController {
     @GetMapping("/{id}")
     public ResponseEntity<Filme> buscarPorId(@PathVariable Long id){
         var filme = filmeRepository.findById(id);
-        if(filme.isPresent())
+        if(filme.isPresent()) {
             return ResponseEntity.ok(filme.get());
+        }
         return ResponseEntity.notFound().build();
     }
 
@@ -42,7 +43,7 @@ public class FilmeController {
         var filme = filmeRepository.findById(id);
         if (filme.isPresent()){
             novoFilme.setId(filme.get().getId());
-        novoFilme = filmeRepository.save(novoFilme);
+            novoFilme = filmeRepository.save(novoFilme);
         }
         return novoFilme;
     }

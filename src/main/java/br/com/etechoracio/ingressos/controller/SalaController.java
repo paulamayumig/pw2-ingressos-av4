@@ -1,6 +1,7 @@
 package br.com.etechoracio.ingressos.controller;
 
 
+import br.com.etechoracio.ingressos.entity.Filme;
 import br.com.etechoracio.ingressos.entity.Sala;
 import br.com.etechoracio.ingressos.repository.SalaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,13 @@ public class SalaController {
             return ResponseEntity.ok(sala.get());
         }
         return ResponseEntity.notFound().build();
+    }
+
+
+    @PostMapping
+    public ResponseEntity<Sala> cadastrar(@RequestBody Sala sala){
+        sala = salaRepository.save(sala);
+        return ResponseEntity.status(HttpStatus.CREATED).body(sala);
     }
 
 
