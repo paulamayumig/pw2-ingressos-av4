@@ -1,8 +1,6 @@
 package br.com.etechoracio.ingressos.controller;
 
 import br.com.etechoracio.ingressos.entity.Filme;
-import br.com.etechoracio.ingressos.enums.ClassificacaoIndicativaEnum;
-import br.com.etechoracio.ingressos.enums.SimNaoEnum;
 import br.com.etechoracio.ingressos.repository.FilmeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -38,7 +36,7 @@ public class FilmeController {
         return ResponseEntity.status(HttpStatus.CREATED).body(filme);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<Filme> atualizar(@RequestBody Filme novoFilme,
+    public Filme atualizar(@RequestBody Filme novoFilme,
                            @PathVariable Long id) {
         var filme = filmeRepository.findById(id);
         if (filme.isPresent()){
